@@ -45,6 +45,11 @@ export default function ProductDetails({ navigation }) {
     })
   }
 
+  const handleCall = () => {
+    const phoneNumber = property.tel // Replace with the phone number you want to dial
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
+
   const sendEmailMessage = () => {
     const subject = 'Regarding ' + property.title;
     const body = "Hi " + property.userName + "\n" + "I am interested in your property at " + property.address + ". Please contact me on"
@@ -85,9 +90,44 @@ export default function ProductDetails({ navigation }) {
       </Swiper>
       <View className="p-3">
         <Text className="text-[24px] font-bold">{property?.title}</Text>
-        <View className="items-baseline">
-          <Text className="p-2 px-10 mt-2 rounded-[10px] bg-blue-200 text-blue-500">{property.category}</Text>
+        
+        <View className=" flex flex-row text-blue-500 bg-blue-200 mt-3 p-2 text-center rounded-lg px-1 w-full">
+         <Text className="text-[18px] pl-1 font-bold">{property.category}</Text>
+         <Image source={require('./../../assets/images/location.png')} style={{ width: 24, height: 24 }} />
+         <Text className="text-[19px] text-center">{property.address}</Text>
+      </View>
+
+      <View className="flex flex-row p-2 items-center justify-between justify-center">
+
+        <View className="flex flex-row mr-5 items-center ml-1 mt-1  text-[12px] w-[35px]">
+          <Image source={require('./../../assets/images/home.png')} style={{ width: 24, height: 24 }} />
+          <Text className="ml-1">{property.parlor}</Text>
         </View>
+
+
+        <View className="flex flex-row mr-5 items-center ml-1 mt-1 text-[12px] w-[35px]">
+          <Image source={require('./../../assets/images/cutlery.png')} style={{ width: 24, height: 24 }} />
+          <Text className="ml-1">{property.kitchen}</Text>
+        </View>
+
+
+        <View className="flex flex-row mr-5 items-center ml-1 mt-1 text-[12px] w-[35px]">
+          <Image source={require('./../../assets/images/bathtub.png')} style={{ width: 24, height: 24 }} />
+          <Text className="ml-1">{property.bathroom}</Text>
+        </View>
+
+
+        <View className="flex flex-row mr-5 items-center ml-1 mt-1  text-[12px] w-[35px]">
+          <Image source={require('./../../assets/images/sleep.png')} style={{ width: 24, height: 24 }} />
+          <Text className="ml-1">{property.bedroom}</Text>
+        </View>
+
+
+      </View>
+      <View>
+        <Text className="p-2 text-[18px] text-center font-bold text-green-600">{property.price} XAF</Text>
+      </View>
+
         <Text className="mt-3 text-[20px] font-bold">Description</Text>
         <Text className="py-2 text-[17px] text-gray-600">{property?.desc}</Text>
       </View>
@@ -105,10 +145,17 @@ export default function ProductDetails({ navigation }) {
         <Text className="text-center text-white">Delete Post</Text>
       </TouchableOpacity>
       :
-      <TouchableOpacity onPress={sendEmailMessage} className="z-40 bg-blue-500 rounded-lg p-4 m-2">
-        <Text className="text-center text-white">Send Message</Text>
-      </TouchableOpacity>
+      <View>
+        <TouchableOpacity onPress={sendEmailMessage} className="z-40 bg-blue-500 rounded-lg p-4 m-2">
+          <Text className="text-center text-white">Send Message</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={handleCall} className="z-40 bg-green-500 rounded-lg p-4 m-2">
+          <Text className="text-center text-white">Call</Text>
+        </TouchableOpacity>
+      </View>
       }
+      
 
     </ScrollView>
   )

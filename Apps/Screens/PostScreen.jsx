@@ -78,6 +78,11 @@ export default function PostScreen() {
     }
   };
 
+  const clearData = () => {
+    setImages([]) // Clear image data
+
+  };
+
   return (
     <KeyboardAvoidingView>
       <ScrollView className="p-10">
@@ -88,6 +93,10 @@ export default function PostScreen() {
           initialValues={{
             title: '', desc: '', category: '', address: '', tel: '',
             price: '',
+            parlor: '',
+            kitchen: '',
+            bathroom: '',
+            bedroom: '',
             imageUrls: '',
             userName: '',
             userEmail: '',
@@ -106,10 +115,19 @@ export default function PostScreen() {
           {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, errors }) => (
             <ScrollView>
 
-              <TouchableOpacity onPress={pickImages}>
+              <View className="flex flex-row justify-between my-4">
+                <TouchableOpacity onPress={pickImages}>
               <Image source={require('./../../assets/images/image.png')}
                 style={{width:70, height:70, borderRadius:15}}/>
+              </TouchableOpacity> 
+
+              <TouchableOpacity onPress={clearData} style={{ backgroundColor: '#FF6347',
+                }} className="text-red-600 p-4 rounded-[10px] mt-5 ">
+                  <Text className="text-white text-center text-[16px]">clear Data</Text>
               </TouchableOpacity>
+              </View>
+
+              
 
               <FlatList
                 horizontal
@@ -159,6 +177,38 @@ export default function PostScreen() {
                 keyboardType='number-pad'
                 value={values.price}
               />
+              <TextInput
+                style={styles.input}
+                placeholder="Parlor"
+                onChangeText={handleChange('parlor')}
+                onBlur={handleBlur('parlor')}
+                keyboardType='number-pad'
+                value={values.parlor}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Kitchen"
+                onChangeText={handleChange('kitchen')}
+                onBlur={handleBlur('kitchen')}
+                keyboardType='number-pad'
+                value={values.kitchen}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Bathroom"
+                onChangeText={handleChange('bathroom')}
+                onBlur={handleBlur('bathroom')}
+                keyboardType='number-pad'
+                value={values.bathroom}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Bedroom"
+                onChangeText={handleChange('bedroom')}
+                onBlur={handleBlur('bedroom')}
+                keyboardType='number-pad'
+                value={values.bedroom}
+              />
 
               <View style={styles.pickerContainer}>
                 <Picker
@@ -177,13 +227,14 @@ export default function PostScreen() {
                   backgroundColor: loading ? '#ccc' : '#067BFF',
                 }}
                 disabled={loading}
-                className="p-4 rounded-[10px] mt-5 mb-20">
+                className="p-4 rounded-[10px] mt-5 mb-20 ">
                 {loading ?
                   <ActivityIndicator color='#fff' />
                   :
                   <Text className="text-white text-center text-[16px]">Create Listing</Text>
                 }
-              </TouchableOpacity>
+              </TouchableOpacity>            
+
             </ScrollView>
           )}
         </Formik>

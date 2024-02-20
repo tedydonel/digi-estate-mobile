@@ -13,39 +13,44 @@ export default function PostItem({ item }) {
       onPress={() => navigation.push('property-details', { property: item })}
     >
       {/* Use the firstImageUrl as the source for the Image component */}
-      {firstImageUrl && <Image source={{ uri: firstImageUrl }} className="w-full h-[150px] rounded-lg" />}
-      <Text className="text-blue-500 bg-blue-200 mt-1 p-1 text-center rounded-lg px-1 text-[12px] w-full">{item.category}</Text>
+      {firstImageUrl && <Image source={{ uri: firstImageUrl }} className="w-full h-[250px] rounded-lg" />}
+
+      <View className=" flex flex-row text-blue-500 bg-blue-200 mt-1 p-1 text-center rounded-lg px-1 w-full">
+         <Text className="text-[15px] pl-1 font-bold">{item.category}</Text>
+         <Image source={require('./../../assets/images/location.png')} style={{ width: 16, height: 16 }} />
+         <Text className="text-[13px] text-center">{item.address}</Text>
+      </View>
 
       <View className="flex flex-row items-center justify-between justify-center">
 
         <View className="flex flex-row  items-center ml-1 mt-1  text-[12px] w-[35px]">
           <Image source={require('./../../assets/images/home.png')} style={{ width: 16, height: 16 }} />
-          <Text className="ml-1">1</Text>
+          <Text className="ml-1">{item.parlor}</Text>
         </View>
 
 
         <View className="flex flex-row  items-center ml-1 mt-1  text-[12px] w-[35px]">
           <Image source={require('./../../assets/images/cutlery.png')} style={{ width: 16, height: 16 }} />
-          <Text className="ml-1">1</Text>
+          <Text className="ml-1">{item.kitchen}</Text>
         </View>
 
 
         <View className="flex flex-row  items-center ml-1 mt-1 text-[12px] w-[35px]">
           <Image source={require('./../../assets/images/bathtub.png')} style={{ width: 16, height: 16 }} />
-          <Text className="ml-1">1</Text>
+          <Text className="ml-1">{item.bathroom}</Text>
         </View>
 
 
         <View className="flex flex-row  items-center ml-1 mt-1  text-[12px] w-[35px]">
           <Image source={require('./../../assets/images/sleep.png')} style={{ width: 16, height: 16 }} />
-          <Text className="ml-1">1</Text>
+          <Text className="ml-1">{item.bedroom}</Text>
         </View>
 
 
       </View>
       <View>
         <Text className="text-[15px] font-bold mt-1">{item.title}</Text>
-        <Text className="text-[13px] font-bold text-green-600">{item.price} XAF / Month</Text>
+        <Text className="text-[13px] font-bold text-green-600">{item.price}</Text>
       </View>
     </TouchableOpacity>
   )

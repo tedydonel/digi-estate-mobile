@@ -16,7 +16,7 @@ export default function ExploreScreen() {
 
   const getAllProperties=async()=>{
     setPropertyList([]); 
-    const q=query(collection(db,'UserListings'),orderBy('createdAt','desc'));
+    const q=query(collection(db,'UserListings'),orderBy('createdAt','asc'));
 
     const snapshot=await getDocs(q);
 
